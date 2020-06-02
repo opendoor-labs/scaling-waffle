@@ -15,4 +15,4 @@ FROM alpine:3.11
 RUN apk add --update lsof vim
 
 COPY --from=builder /build/bin/server /usr/bin/debug-server
-CMD ["/usr/bin/debug-server", "80"]
+CMD ["/usr/bin/debug-server", "8050"]

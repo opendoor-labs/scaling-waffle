@@ -4,17 +4,18 @@ set -e
 
 STARTUP_COUNTDOWN=5
 
-SERVER_ADDRESS=${SERVER_ADDRESS:-server:80}
-CONN_COUNT=${CONN_COUNT:-10000}
-CONN_PERIOD_MS=${CONN_PERIOD_MS:-100}
+SERVER_ADDRESS=${SERVER_ADDRESS:-server:8050}
+CONN_COUNT=${CONN_COUNT:-60000}
+CONN_PERIOD_MS=${CONN_PERIOD_MS:-10}
 
 for i in $(seq ${STARTUP_COUNTDOWN}); do
 	echo "Starting in $(($STARTUP_COUNTDOWN-$i+1)) sec..."
 	sleep 1
 done
 
-if [[ -z ${ATTACK_KILLSWITCH} ]]; then
+if [[ -n "${ATTACK_KILLSWITCH}" ]]; then
 	echo "Not attacking, unset \$ATTACK_KILLSWITCH to re-enable"
+	exit 0
 fi
 
 echo "Launching 'attack'"

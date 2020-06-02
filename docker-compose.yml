@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: Dockerfile.server
     ports:
-      - "80:80"
+      - "8050:8050"
 #    ulimits:
 #      nofile:
 #        soft: 30000
