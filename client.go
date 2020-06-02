@@ -26,11 +26,13 @@ func main() {
 	connectionPeriod := *connectionPeriodArg
 
 	for i := 0; i < outstandingCount; i++ {
-		_, err := net.Dial("tcp", address)
+		conn, err := net.Dial("tcp", address)
 		if err != nil {
 			log.Printf("connection failed: %+v\n", err)
 			continue
 		}
+		buffer := make([]byte, 1)
+		go conn.Read(buffer)
 		time.Sleep(time.Millisecond * time.Duration(connectionPeriod))
 	}
 
