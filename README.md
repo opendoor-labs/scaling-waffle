@@ -1,6 +1,6 @@
 # Scaling Waffle
 
-Available Envvars for Client (defined in `client.sh`:
+Available Envvars for Client (defined in `client.sh`):
 
 | Name | Default | Notes |
 |---|---|---|
