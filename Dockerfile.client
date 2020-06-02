@@ -1,0 +1,21 @@
+FROM golang:1.13.11-alpine3.11 as builder
+
+WORKDIR /build
+
+COPY go.mod go.sum ./
+
+RUN go mod download
+
+COPY client.go ./
+
+RUN go build -o /build/bin/client client.go
+
+FROM alpine:3.11
+
+RUN apk add --update curl vim lsof bash
+
+COPY --from=builder /build/bin/client /usr/bin/debug-client
+
+COPY client.sh /
+
+CMD ["/client.sh"]

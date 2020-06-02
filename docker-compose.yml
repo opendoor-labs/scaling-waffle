@@ -1,0 +1,18 @@
+version: '2'
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+    ports:
+      - "80:80"
+#    ulimits:
+#      nofile:
+#        soft: 30000
+#        hard: 40000
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+    depends_on:
+      - server
